@@ -1,0 +1,39 @@
+syntax = "proto3";
+
+// protoc --go-grpc_out=. --go-grpc_opt=paths=source_relative  pb_hall.proto
+// protoc --go_out=. --go_opt=paths=source_relative pb_hall.proto
+// protoc --go-grpc_out=. --go-grpc_opt=paths=source_relative  pb_hall.proto
+
+option go_package = "hall.bojiu.com/internal/net/hall/pb";
+
+// client to server  请求日志
+message m_log_tos {
+  int64 user_id = 1;                // 用户id
+  int64 game_id = 2;                // 游戏id
+  uint32  page = 3 ;                // 页数
+  uint32  page_size = 4;            // 页尺寸
+}
+
+message p_log_info {
+  int64  id  = 1 ;
+  int64 user_sid  = 2 ;
+  int64 per_round_sid         =   3          ;
+  int64 game_id              =    4           ;
+  int64 room_id              =    5         ;
+  int64 change               =    6        ;
+  int64 end_time                  =    7       ;
+  string bets                      =    8      ;
+  string result                    =    9     ;
+  uint32  per_round_state           =     10        ;
+  int64 win                       =     11        ;
+  int64 before_money              =     12        ;
+  int64 after_money               =     13        ;
+  string  platform                  =     14        ;
+  string agent                     =     15        ;
+  int64  player_service_charge     =     16        ;
+}
+
+// server to client  请求日志
+message m_log_toc {
+  repeated  p_log_info  logs =  1 ;
+}
